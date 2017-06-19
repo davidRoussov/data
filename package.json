@@ -6,6 +6,9 @@
     "node": "6.9.x"
   },
   "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "cd react-ui && npm start",
+    "server": "nodemon",
     "start": "node server",
     "heroku-postbuild": "cd react-ui/ && npm install --only=dev && npm install && npm run build"
   },
@@ -27,5 +30,8 @@
     "react"
   ],
   "license": "MIT",
-  "devDependencies": {}
+  "devDependencies": {
+    "concurrently": "^3.4.0",
+    "nodemon": "^1.11.0"
+  }
 }
