@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 
+import MenuBar from "./MenuBar";
+import Mass from "./Mass";
+
 class App extends Component {
 
   render() {
     return (
       <div>
-        <h1>Hello World!</h1>
+        <MenuBar/>
+        <Mass/>
       </div>
     );
   }
