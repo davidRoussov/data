@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import MenuBar from "./MenuBar";
-import Mass from "./Mass";
+import Mass from "../containers/Mass";
 
 class App extends Component {
 

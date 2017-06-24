@@ -15,7 +15,7 @@ class DataEntry extends Component {
             <div>
                 <table className="table table-bordered table-hover">
                     <thead>
-                        <tr>
+                        <tr>    
                             <th>Date</th>
                             <th>Mass</th>
                         </tr>

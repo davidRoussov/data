@@ -1,8 +1,3 @@
-import React, { Component } from "react";
-
-import DataEntry from "./DataEntry";
-import ChartView from "./ChartView";
-
 const massHistory = [
   {
     "date": "2012-04-30T14:00:00.000Z",
@@ -110,32 +105,12 @@ const massHistory = [
   }
 ];  
 
-class Mass extends Component {
 
-    render() {
-
-        const dataEntryStyle = {
-            float: "left",
-            width: "20%",
-            padding: "8px"
-        };
-
-        const chartViewStyle = {
-            marginLeft: "20%"
-        }
-
-        return (
-            <div>
-                <div style={dataEntryStyle}>
-                    <DataEntry massHistory={massHistory}/>
-                </div>
-                <div style={chartViewStyle}>
-                    <ChartView massHistory={massHistory}/>
-                </div>
-            </div>
-        )
+const mass = (state = {massHistory: massHistory}, action) => {
+    switch (action.type) {
+        default:
+            return state;
     }
 }
 
-export default Mass;
-
+export default mass;
