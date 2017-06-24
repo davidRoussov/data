@@ -3,16 +3,112 @@ import React, { Component } from "react";
 import DataEntry from "./DataEntry";
 import ChartView from "./ChartView";
 
-const tempData = [
-    {date: "1", mass: "10"},
-    {date: "2", mass: "12"},
-    {date: "3", mass: "11"},
-    {date: "4", mass: "14"},
-    {date: "5", mass: "13"},
-    {date: "6", mass: "11"},
-    {date: "7", mass: "15"},
-    {date: "8", mass: "18"}
-];
+const massHistory = [
+  {
+    "date": "2012-04-30T14:00:00.000Z",
+    "mass": 58.13
+  },
+  {
+    "date": "2012-04-29T14:00:00.000Z",
+    "mass": 53.98
+  },
+  {
+    "date": "2012-04-26T14:00:00.000Z",
+    "mass": 67
+  },
+  {
+    "date": "2012-04-25T14:00:00.000Z",
+    "mass": 89.7
+  },
+  {
+    "date": "2012-04-24T14:00:00.000Z",
+    "mass": 99
+  },
+  {
+    "date": "2012-04-23T14:00:00.000Z",
+    "mass": 130.28
+  },
+  {
+    "date": "2012-04-22T14:00:00.000Z",
+    "mass": 166.7
+  },
+  {
+    "date": "2012-04-19T14:00:00.000Z",
+    "mass": 234.98
+  },
+  {
+    "date": "2012-04-18T14:00:00.000Z",
+    "mass": 345.44
+  },
+  {
+    "date": "2012-04-17T14:00:00.000Z",
+    "mass": 443.34
+  },
+  {
+    "date": "2012-04-16T14:00:00.000Z",
+    "mass": 543.7
+  },
+  {
+    "date": "2012-04-15T14:00:00.000Z",
+    "mass": 580.13
+  },
+  {
+    "date": "2012-04-12T14:00:00.000Z",
+    "mass": 605.23
+  },
+  {
+    "date": "2012-04-11T14:00:00.000Z",
+    "mass": 622.77
+  },
+  {
+    "date": "2012-04-10T14:00:00.000Z",
+    "mass": 626.2
+  },
+  {
+    "date": "2012-04-09T14:00:00.000Z",
+    "mass": 628.44
+  },
+  {
+    "date": "2012-04-08T14:00:00.000Z",
+    "mass": 636.23
+  },
+  {
+    "date": "2012-04-04T14:00:00.000Z",
+    "mass": 633.68
+  },
+  {
+    "date": "2012-04-03T14:00:00.000Z",
+    "mass": 624.31
+  },
+  {
+    "date": "2012-04-02T14:00:00.000Z",
+    "mass": 629.32
+  },
+  {
+    "date": "2012-04-01T14:00:00.000Z",
+    "mass": 618.63
+  },
+  {
+    "date": "2012-03-29T13:00:00.000Z",
+    "mass": 599.55
+  },
+  {
+    "date": "2012-03-28T13:00:00.000Z",
+    "mass": 609.86
+  },
+  {
+    "date": "2012-03-27T13:00:00.000Z",
+    "mass": 617.62
+  },
+  {
+    "date": "2012-03-26T13:00:00.000Z",
+    "mass": 614.48
+  },
+  {
+    "date": "2012-03-25T13:00:00.000Z",
+    "mass": 606.98
+  }
+];  
 
 class Mass extends Component {
 
@@ -30,10 +126,10 @@ class Mass extends Component {
         return (
             <div>
                 <div style={dataEntryStyle}>
-                    <DataEntry massHistory={tempData}/>
+                    <DataEntry massHistory={massHistory}/>
                 </div>
                 <div style={chartViewStyle}>
-                    <ChartView massHistory={tempData} data={[5,10,1,3]} size={[500,500]}/>
+                    <ChartView massHistory={massHistory}/>
                 </div>
             </div>
         )
@@ -41,3 +137,4 @@ class Mass extends Component {
 }
 
 export default Mass;
+

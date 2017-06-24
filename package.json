@@ -9,6 +9,7 @@
     "heroku-postbuild": "cd client/ && npm install --only=dev && npm install && npm run build"
   },
   "dependencies": {
+    "d3": "^4.9.1",
     "express": "^4.14.1"
   },
   "devDependencies": {
