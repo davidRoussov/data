@@ -116,7 +116,8 @@ class Mass extends Component {
 
         const dataEntryStyle = {
             float: "left",
-            width: "20%"
+            width: "20%",
+            padding: "8px"
         };
 
         const chartViewStyle = {

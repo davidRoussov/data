@@ -6,14 +6,20 @@ class DataEntry extends Component {
 
         const tableOfPast = this.props.massHistory.map((row, i) => 
             <tr key={i}>
-                <td>{row.date}</td>
+                <td>{row.date.split("T")[0]}</td>
                 <td>{row.mass}</td>
             </tr>
         );
 
         return (
             <div>
-                <table className="table table-striped table-hover">
+                <table className="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Mass</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         {tableOfPast}
                     </tbody>
