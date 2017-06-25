@@ -19,9 +19,7 @@ app.get('/api', function (req, res) {
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
 });
-
-console.log("this is a test");
-
+console.log("hi");
 app.listen(PORT, function () {
   console.log(`Listening on port ${PORT}`);
 });
