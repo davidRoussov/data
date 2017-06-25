@@ -20,8 +20,7 @@ app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
 });
 
-
-
+console.log("this is a test");
 
 app.listen(PORT, function () {
   console.log(`Listening on port ${PORT}`);
