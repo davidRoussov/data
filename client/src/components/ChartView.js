@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import * as d3 from "d3";
 
 class ChartView extends Component {
-    componentDidMount() {
+    componentDidUpdate() {
+        this.data = (this.props && this.props.massHistory) ? this.props.massHistory : [];
         this.createLineChart();
     }
 
@@ -30,16 +31,16 @@ class ChartView extends Component {
                 .attr("transform", `translate(${margin.left},${margin.top})`)
 
 
-        this.props.massHistory.forEach(d => {
+        this.data.forEach(d => {
             d.date = parseTime(d.date);
             d.mass = +d.mass;
         });
 
-        x.domain(d3.extent(this.props.massHistory, d => d.date));
-        y.domain([0, d3.max(this.props.massHistory, d => d.mass)]);
+        x.domain(d3.extent(this.data, d => d.date));
+        y.domain([0, d3.max(this.data, d => d.mass)]);
 
         svg.append("path")
-            .data([this.props.massHistory])
+            .data([this.data])
             .attr("class", "line")
             .attr("d", valueLine)
             .style("fill", "none")

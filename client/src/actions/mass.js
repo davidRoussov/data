@@ -1,17 +1,16 @@
-export function getData() {
+export function getMassHistory() {
     return dispatch => {
         fetch('/api')
             .then(response => response.json())
             .then(json => {
-                console.log("lalalalalal");
-                dispatch(resolvedGetData(json))
+                dispatch(resolvedMassHistory(json))
             })
     }
 }
 
-export function resolvedGetData(data) {
+export function resolvedMassHistory(data) {
     return {
-        type: 'RESOLVED_GET_DATA',
+        type: 'GET_MASS_HISTORY',
         data
     }
 }

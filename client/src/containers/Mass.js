@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { getData } from '../actions/mass';
+import { getMassHistory } from '../actions/mass';
 
 import DataEntry from "../components/DataEntry";
 import ChartView from "../components/ChartView";
 
 class Mass extends Component {
+
+    componentDidMount() {
+        this.props.loadMass();
+    }
 
     render() {
 
@@ -38,7 +42,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  onLoadMass: getData
+  loadMass: getMassHistory
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Mass);
