@@ -1,4 +1,3 @@
-import config from './config';
 import path from 'path';
 import express from 'express';
 import { graphQLHTTP } from 'express-graphql';

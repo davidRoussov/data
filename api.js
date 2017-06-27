@@ -1,7 +1,6 @@
 import express from 'express';
 import pg from 'pg';
 import config from './config';
-pg.defaults.ssl = true;
 
 
 const massHistory = [
@@ -114,6 +113,7 @@ const massHistory = [
 
 export default (api) => {
 
+  pg.defaults.ssl = true;
   pg.connect(config.postgres, (err, client) => {
     if (err) {
       console.log("error");
