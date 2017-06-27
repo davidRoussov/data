@@ -6,10 +6,11 @@ import { graphQLHTTP } from 'express-graphql';
 import api from './api';
 
 const app = express();
-const PORT = config.port;
+const PORT = process.env.PORT || 5000;
 
 // Priority serve any static files.
 app.use(express.static(path.resolve(__dirname, './client/build')));
+
 
 api(app);
 
