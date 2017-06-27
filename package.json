@@ -5,7 +5,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "cd client && npm start",
     "server": "nodemon server.js --exec babel-node --presets es2015,stage-2",
-    "start": "node server",
+    "start": "babel-node --presets es2015,stage-2 server",
     "heroku-postbuild": "cd client/ && npm install --only=dev && npm install && npm run build"
   },
   "dependencies": {
