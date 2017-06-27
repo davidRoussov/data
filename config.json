@@ -1,0 +1,4 @@
+{
+    "port": 5000,
+    "postgres": "postgres://uibmognviwphqp:81f4d119b56049ad32e55c73feecc772abaf44fe96a5ac1ce96cf3f85d876eac@ec2-23-21-246-11.compute-1.amazonaws.com:5432/d1cp4hkokshipm"
+}
