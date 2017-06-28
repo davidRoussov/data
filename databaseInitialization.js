@@ -2,11 +2,17 @@ import { Pool } from "pg";
 import config from './config';
 import prompt from 'prompt';
 
-const pool = new Pool(config.postgres);
+const pool = new Pool(config.herokuPostgres);
+pool.on('error', (err, client) => {
+    console.error('idle client error', err.message, err.stack);
+});
 
 class DatabaseInitialization {
+
     confirmProceed() {
         return new Promise((resolve, reject) => {
+            resolve();
+            return;
             prompt.start();
             prompt.get([`enter 'yes' to confirm the deletion of the current database and the initialization of a new database`], (err, result) => { 
                 const response = result[Object.keys(result)[0]];
@@ -17,12 +23,34 @@ class DatabaseInitialization {
         });
     }
 
+    createSomeTableForTesting() {
+        const testTable1 = `CREATE TABLE test1 (hi integer);`;
+        const testTable2 = `CREATE TABLE test2 (yo integer);`;
+
+        return pool.query(testTable1)
+            .then(() => pool.query(testTable2))
+            .catch(error => console.error(error));
+    }
+
     deleteTables() {
-        console.log("hello");
+        const query = 
+            `SELECT table_name
+            FROM information_schema.tables
+            WHERE table_schema='public'
+            AND table_type='BASE TABLE';`;
+
+        return pool.query(query)
+            .then(result => result.rows.map(row => row.table_name))
+            .then(tableNames => Promise.all(tableNames.map(name => pool.query(`DROP TABLE ${name}`))))
+            .catch(error => console.error(error));
+    }
+
+    run() {
+        this.confirmProceed()   
+            .then(this.createSomeTableForTesting)
+            .then(this.deleteTables)
+            .catch(error => console.log(error));
     }
 }
 
-new DatabaseInitialization()
-    .confirmProceed()
-    .then(this.deleteTables)
-    .catch(error => console.log("nope"));
+new DatabaseInitialization().run();
