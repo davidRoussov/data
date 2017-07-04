@@ -1,7 +1,5 @@
 import express from 'express';
-import pg from 'pg';
-import config from './config';
-
+import mapTime from './lib/mapTime';
 
 const massHistory = [
   {
@@ -113,21 +111,24 @@ const massHistory = [
 
 export default (api) => {
 
-  pg.defaults.ssl = true;
-  pg.connect(config.postgres, (err, client) => {
-    if (err) {
-      console.log("error");
-      console.error(err);
-    } else {
-      console.log("SUCCESS!");
-    }
+  // pg.defaults.ssl = true;
+  // pg.connect(config.postgres, (err, client) => {
+  //   if (err) {
+  //     console.log("error");
+  //     console.error(err);
+  //   } else {
+  //     console.log("SUCCESS!");
+  //   }
+  // });
+
+
+  api.get('/api', function (req, res) {
+      res.set('Content-Type', 'application/json');
+      res.send(massHistory);
+
+      console.log(mapTime.test());
+      
   });
-
-
-    api.get('/api', function (req, res) {
-        res.set('Content-Type', 'application/json');
-        res.send(massHistory);
-    });
 
 
     return api;

@@ -3,7 +3,7 @@ import * as d3 from "d3";
 
 class ChartView extends Component {
     componentDidUpdate() {
-        this.data = (this.props && this.props.massHistory) ? this.props.massHistory : [];
+        this.data = (this.props && this.props.timeValueData) ? this.props.timeValueData : [];
         this.createLineChart();
     }
 

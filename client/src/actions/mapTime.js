@@ -1,16 +1,16 @@
-export function getMassHistory() {
+export function getTimeValueData() {
     return dispatch => {
         fetch('/api')
             .then(response => response.json())
             .then(json => {
-                dispatch(resolvedMassHistory(json))
+                dispatch(resolveTimeValueData(json))
             })
     }
 }
 
-export function resolvedMassHistory(data) {
+export function resolveTimeValueData(data) {
     return {
-        type: 'GET_MASS_HISTORY',
+        type: 'GET_TIME_MAPPING_DATA',
         data
     }
 }

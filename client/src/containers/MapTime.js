@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { getMassHistory } from '../actions/mass';
+import { getTimeValueData } from '../actions/mapTime';
 
 import DataEntry from "../components/DataEntry";
 import ChartView from "../components/ChartView";
 
-class Mass extends Component {
+class MapTime extends Component {
 
     componentDidMount() {
-        this.props.loadMass();
+        this.props.loadData();
     }
 
     render() {
@@ -27,10 +27,10 @@ class Mass extends Component {
         return (
             <div>
                 <div style={dataEntryStyle}>
-                    <DataEntry massHistory={this.props.mass.massHistory}/>
+                    <DataEntry timeValueData={this.props.mapTime.timeValueData}/>
                 </div>
                 <div style={chartViewStyle}>
-                    <ChartView massHistory={this.props.mass.massHistory}/>
+                    <ChartView timeValueData={this.props.mapTime.timeValueData}/>
                 </div>
             </div>
         )
@@ -42,8 +42,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  loadMass: getMassHistory
+  loadData: getTimeValueData
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Mass);
+export default connect(mapStateToProps, mapDispatchToProps)(MapTime);
 

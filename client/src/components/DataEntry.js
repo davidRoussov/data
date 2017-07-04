@@ -4,7 +4,7 @@ class DataEntry extends Component {
 
     render() {
 
-        const data = (this.props && this.props.massHistory) ? this.props.massHistory : [];
+        const data = (this.props && this.props.timeValueData) ? this.props.timeValueData : [];
 
         const tableOfPast = data.map((row, i) => 
             <tr key={i}>

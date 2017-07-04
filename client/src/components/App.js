@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import MenuBar from "./MenuBar";
-import Mass from "../containers/Mass";
+import MapTime from "../containers/MapTime";
 
 class App extends Component {
 
@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div>
         <MenuBar/>
-        <Mass/>
+        <MapTime/>
       </div>
     );
   }

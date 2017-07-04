@@ -45,10 +45,22 @@ class DatabaseInitialization {
             .catch(error => console.error(error));
     }
 
+    createTables() {
+        const query = 
+            `CREATE TABLE map_time (
+                ID INT PRIMARY KEY NOT NULL,
+                mass_time VARCHAR(100),
+                mass_value NUMERIC
+            )`;
+        
+        return pool.query(query);
+    }
+
     run() {
         this.confirmProceed()   
             .then(this.createSomeTableForTesting)
             .then(this.deleteTables)
+            .then(this.createTables)
             .catch(error => console.log(error));
     }
 }

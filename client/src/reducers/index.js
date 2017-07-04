@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import mass from './mass';
+import mapTime from './mapTime';
 
 const reducers = combineReducers({
-    mass
+    mapTime
 });
 
 export default reducers;
