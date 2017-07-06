@@ -1,6 +1,7 @@
-export function getTimeValueData() {
+export function getTimeValueData(category) {
+    console.log("action category", category);
     return dispatch => {
-        fetch('/api')
+        fetch('/map-time?category=' + "mass")
             .then(response => response.json())
             .then(json => {
                 dispatch(resolveTimeValueData(json))

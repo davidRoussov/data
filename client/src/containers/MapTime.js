@@ -9,7 +9,7 @@ import ChartView from "../components/ChartView";
 class MapTime extends Component {
 
     componentDidMount() {
-        this.props.loadData();
+        this.props.loadData("mass");
     }
 
     render() {
@@ -24,13 +24,22 @@ class MapTime extends Component {
             marginLeft: "20%"
         }
 
+        const data = (this.props && this.props.timeValueData) ? this.props.timeValueData : [];
+        const pruned = data.map(row => {
+            const newKeys = Object.keys(row).map(key => {
+                if (key.includes("_time")) return {"time": row[key]}
+                else if (key.includes("_value")) return {"value": row[key]}
+            })
+            return Object.assign({}, newKeys[0], newKeys[1]);
+        });
+
         return (
             <div>
                 <div style={dataEntryStyle}>
-                    <DataEntry timeValueData={this.props.mapTime.timeValueData}/>
+                    <DataEntry timeValueData={pruned}/>
                 </div>
                 <div style={chartViewStyle}>
-                    <ChartView timeValueData={this.props.mapTime.timeValueData}/>
+                    <ChartView timeValueData={pruned}/>
                 </div>
             </div>
         )

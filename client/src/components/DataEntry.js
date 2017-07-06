@@ -4,12 +4,13 @@ class DataEntry extends Component {
 
     render() {
 
-        const data = (this.props && this.props.timeValueData) ? this.props.timeValueData : [];
+        console.log(this.props);
+        const data = this.props.timeValueData; 
 
         const tableOfPast = data.map((row, i) => 
             <tr key={i}>
-                <td>{row.date.split("T")[0]}</td>
-                <td>{row.mass}</td>
+                <td>{row.time.split("T")[0]}</td>
+                <td>{row.value}</td>
             </tr>
         );
 
