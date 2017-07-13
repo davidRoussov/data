@@ -24,23 +24,16 @@ class MapTime extends Component {
             marginLeft: "20%"
         }
 
-        const data = (this.props && this.props.timeValueData) ? this.props.timeValueData : [];
-        const pruned = data.map(row => {
-            const newKeys = Object.keys(row).map(key => {
-                if (key.includes("_time")) return {"time": row[key]}
-                else if (key.includes("_value")) return {"value": row[key]}
-            })
-            return Object.assign({}, newKeys[0], newKeys[1]);
-        });
+        const data = (this.props && this.props.mapTime.timeValueData) ? this.props.mapTime.timeValueData : [];
 
         return (
             <div>
-                <div style={dataEntryStyle}>
-                    <DataEntry timeValueData={pruned}/>
+                 <div style={dataEntryStyle}>
+                    <DataEntry timeValueData={data}/>
                 </div>
                 <div style={chartViewStyle}>
-                    <ChartView timeValueData={pruned}/>
-                </div>
+                    <ChartView timeValueData={data}/>
+                </div> 
             </div>
         )
     }

@@ -14,14 +14,14 @@ class ChartView extends Component {
             width = Number(d3.select(node).style("width").slice(0, -2)) - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
 
-        const parseTime = d3.timeParse("%Y-%m-%dT%H:%M:%S.%LZ");
+        const parseTime = d3.timeParse("%Y-%m-%d");
 
         const x = d3.scaleTime().range([0, width]);
         const y = d3.scaleLinear().range([height, 0]);
 
         const valueLine = d3.line()
-            .x(d => x(d.date))
-            .y(d => y(d.mass));
+            .x(d => x(d.time))
+            .y(d => y(d.value));
 
         
         const svg = d3.select(node)
@@ -32,12 +32,12 @@ class ChartView extends Component {
 
 
         this.data.forEach(d => {
-            d.date = parseTime(d.date);
-            d.mass = +d.mass;
+            d.time = parseTime(d.time);
+            d.value = +d.value;
         });
 
-        x.domain(d3.extent(this.data, d => d.date));
-        y.domain([0, d3.max(this.data, d => d.mass)]);
+        x.domain(d3.extent(this.data, d => d.time));
+        y.domain([0, d3.max(this.data, d => d.value)]);
 
         svg.append("path")
             .data([this.data])
@@ -53,7 +53,7 @@ class ChartView extends Component {
         svg.append("text")
             .attr("transform", `translate(${width/2},${height + margin.top + 20})`)
             .style("text-anchor", "middle")
-            .text("Date");
+            .text("Time");
 
         svg.append("g")
             .call(d3.axisLeft(y));
@@ -64,7 +64,7 @@ class ChartView extends Component {
             .attr("x", 0 - (height / 2))
             .attr("dy", "1em")
             .style("text-anchor", "middle")
-            .text("Mass (kg)")
+            .text("value")
     }
 
     render() {

@@ -8,6 +8,7 @@ export default (api) => {
     mapTime.getData(category)
       .then(data => response.send(data))
       .catch(error => {
+        console.error('Unable to retrieve "map time" data');
         console.error(error);
         response.send(null);
       });      

@@ -11,8 +11,6 @@ class DatabaseInitialization {
 
     confirmProceed() {
         return new Promise((resolve, reject) => {
-            resolve();
-            return;
             prompt.start();
             prompt.get([`enter 'yes' to confirm the deletion of the current database and the initialization of a new database`], (err, result) => { 
                 const response = result[Object.keys(result)[0]];

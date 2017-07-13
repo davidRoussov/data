@@ -4,7 +4,6 @@ class DataEntry extends Component {
 
     render() {
 
-        console.log(this.props);
         const data = this.props.timeValueData; 
 
         const tableOfPast = data.map((row, i) => 
@@ -19,8 +18,8 @@ class DataEntry extends Component {
                 <table className="table table-bordered table-hover">
                     <thead>
                         <tr>    
-                            <th>Date</th>
-                            <th>Mass</th>
+                            <th>Time</th>
+                            <th>Value</th>
                         </tr>
                     </thead>
                     <tbody>
