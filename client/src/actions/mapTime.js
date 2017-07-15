@@ -1,16 +1,31 @@
 export function getTimeValueData(category) {
-    return dispatch => {
-        fetch('/map-time?category=' + category)
-            .then(response => response.json())
-            .then(json => {
-                dispatch(resolveTimeValueData(json))
-            })
-    }
+  return dispatch => {
+    fetch('/map-time?category=' + category)
+      .then(response => response.json())
+      .then(data => {
+          dispatch({
+            type: 'GET_TIME_MAPPING_DATA',
+            data
+          })
+      });
+  }
 }
 
-export function resolveTimeValueData(data) {
-    return {
-        type: 'GET_TIME_MAPPING_DATA',
-        data
-    }
+export function createNewValue(category, newValue) {
+  //return dispatch => {
+    fetch('/map-time-create-value', {
+      method: 'POST',
+      body: JSON.stringify({
+        category,
+        newValue
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      console.log("***");
+      console.log(JSON.stringify(response, null, 2));
+    });
+  //}
 }

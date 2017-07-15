@@ -1,6 +1,7 @@
 import path from 'path';
 import express from 'express';
 import { graphQLHTTP } from 'express-graphql';
+import bodyParser from 'body-parser';
 
 import api from './api';
 
@@ -10,6 +11,8 @@ const PORT = process.env.PORT || 5000;
 // Priority serve any static files.
 app.use(express.static(path.resolve(__dirname, './client/build')));
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 api(app);
 

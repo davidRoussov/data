@@ -1,15 +1,22 @@
 import React, { Component } from  "react";
+import { connect } from 'react-redux';
+
+import { createNewValue } from '../actions/mapTime';
 
 class DataEntry extends Component {
 
     constructor() {
         super();
-        this.state = {['newValue']: ''};
+        this.state = {'newValue': ''};
     }
 
     createNewValue(e) {
         e.preventDefault();
-        console.log(this.state.newValue); 
+        const newValueObject = {
+            time: new Date(),
+            value: this.state.newValue
+        };
+        createNewValue('mass', newValueObject);
     }
 
     handleInputValue(e) {
@@ -42,19 +49,24 @@ class DataEntry extends Component {
                     <button type="submit" className="btn btn-primary" style={submitButtonStyle}>Submit</button>   
                 </form>
                 <table className="table table-bordered table-hover">
-                    <thead>
-                        <tr>    
-                            <th>Time</th>
-                            <th>Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tableOfPast}
-                    </tbody>
+                  <thead>
+                    <tr>    
+                      <th>Time</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tableOfPast}
+                  </tbody>
                 </table>
             </div>
         )
-    }
+    } 
 }
 
-export default DataEntry;
+const mapDispatchToProps = { createNewValue };
+
+export default connect(
+    () => {},
+    mapDispatchToProps
+)(DataEntry);
