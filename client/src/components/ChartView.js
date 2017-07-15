@@ -3,7 +3,7 @@ import * as d3 from "d3";
 
 class ChartView extends Component {
     componentDidUpdate() {
-        this.data = (this.props && this.props.timeValueData) ? this.props.timeValueData : [];
+        this.data = JSON.parse(JSON.stringify((this.props && this.props.timeValueData) ? this.props.timeValueData : []));
         this.createLineChart();
     }
 
@@ -64,7 +64,7 @@ class ChartView extends Component {
             .attr("x", 0 - (height / 2))
             .attr("dy", "1em")
             .style("text-anchor", "middle")
-            .text("value")
+            .text("Value")
     }
 
     render() {
