@@ -23,10 +23,19 @@ class DataEntry extends Component {
         this.setState({ newValue: e.target.value });
     }
 
+    formatTime(time) {
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const date = (new Date(time));
+        return `${days[date.getDay()]}
+                ${date.getUTCFullYear()}/${date.getUTCMonth()}/${date.getUTCDate()}
+                ${date.getHours()}:${date.getMinutes()}`;
+    }
+
     render() {
 
         const inputContainerStyle = {
-            padding: "10px"
+            padding: "10px",
+            width: '200px'
         };
 
         const submitButtonStyle = {
@@ -34,10 +43,14 @@ class DataEntry extends Component {
             width: "100%"
         }
 
-        const data = this.props.timeValueData; 
+        const tableStyle = {
+            width: '200px'
+        };
+
+        const data = this.props.timeValueData;
         const tableOfPast = data.map((row, i) => 
           <tr key={i}>
-              <td>{row.time.toString()}</td>
+              <td><p>{this.formatTime(row.time)}</p></td>
               <td>{row.value}</td>
           </tr>
         );
@@ -48,7 +61,7 @@ class DataEntry extends Component {
                     <input type="text" className="form-control" value={this.state.newValue} onChange={this.handleInputValue.bind(this)}/>
                     <button type="submit" className="btn btn-primary" style={submitButtonStyle}>Submit</button>   
                 </form>
-                <table className="table table-bordered table-hover">
+                <table style={tableStyle} className="table table-bordered table-hover">
                   <thead>
                     <tr>    
                       <th>Time</th>

@@ -14,7 +14,7 @@ class ChartView extends Component {
             width = Number(d3.select(node).style("width").slice(0, -2)) - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
 
-        const parseTime = d3.timeParse("%Y-%m-%d");
+        const parseTime = d3.timeParse("%Y-%m-%dT%H:%M:%S.%LZ");
 
         const x = d3.scaleTime().range([0, width]);
         const y = d3.scaleLinear().range([height, 0]);
