@@ -18,7 +18,7 @@ export default (api) => {
     const category = request.body.category;
     const newValue = request.body.newValue;
     mapTime.createNewValue(category, newValue)
-      .then(data => response.status(201))
+      .then(data => response.sendStatus(201))
       .catch(error => {
         console.error('Unable to create new "map time" value');
         console.error(error);

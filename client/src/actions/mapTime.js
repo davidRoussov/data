@@ -12,7 +12,7 @@ export function getTimeValueData(category) {
 }
 
 export function createNewValue(category, newValue) {
-  //return dispatch => {
+  return dispatch => {
     fetch('/map-time-create-value', {
       method: 'POST',
       body: JSON.stringify({
@@ -23,9 +23,15 @@ export function createNewValue(category, newValue) {
         'Content-Type': 'application/json'
       }
     })
-    .then(response => {
-      console.log("***");
-      console.log(JSON.stringify(response, null, 2));
+    .then(() => {
+      fetch('/map-time?category=' + category)
+        .then(response => response.json())
+        .then(data => {
+            dispatch({
+              type: 'GET_TIME_MAPPING_DATA',
+              data
+            })
+        });
     });
-  //}
+  }
 }

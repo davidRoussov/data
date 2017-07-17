@@ -16,7 +16,7 @@ class DataEntry extends Component {
             time: new Date(),
             value: this.state.newValue
         };
-        createNewValue('mass', newValueObject);
+        this.props.createNewValue('mass', newValueObject);
     }
 
     handleInputValue(e) {
@@ -77,9 +77,13 @@ class DataEntry extends Component {
     } 
 }
 
+const mapStateToProps = state => {
+  return state
+};
+
 const mapDispatchToProps = { createNewValue };
 
 export default connect(
-    () => {},
+    mapStateToProps,
     mapDispatchToProps
 )(DataEntry);
