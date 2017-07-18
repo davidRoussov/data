@@ -9,19 +9,19 @@ import ChartView from "../components/ChartView";
 class MapTime extends Component {
 
   componentDidMount() {
-    this.props.loadData("mass");
+    this.props.getTimeValueData("mass");
   }
 
   render() {
 
       const style = {
+        topicChoose: {
+
+        },
         dataEntry: {
-          float: "left",
-          width: "20%",
           height: '100%'
         },
         chartView: {
-          marginLeft: "20%",
           height: '100%'
         },
         container: {
@@ -33,13 +33,15 @@ class MapTime extends Component {
       const data = (this.props && this.props.mapTime.timeValueData) ? this.props.mapTime.timeValueData : [];
 
       return (
-        <div style={style.container}>
-          <div style={style.dataEntry}>
+        <div style={style.container} className="container">
+          <div className="row">
+            <div style={style.dataEntry} className="col-md-3">
               <DataEntry timeValueData={data}/>
-          </div>
-          <div style={style.chartView}>
+            </div>
+            <div style={style.chartView} className="col-md-9">
               <ChartView timeValueData={data}/>
-          </div> 
+            </div> 
+          </div>
         </div>
       )
   }
@@ -50,7 +52,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  loadData: getTimeValueData
+  getTimeValueData
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapTime);

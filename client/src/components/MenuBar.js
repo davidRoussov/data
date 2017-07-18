@@ -2,32 +2,45 @@ import React, { Component } from 'react';
 
 class MenuBar extends Component {
 
-  render() { 
-    return (
-        <nav className="navbar navbar-toggleable-md navbar-inverse bg-inverse">
-            <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <a className="navbar-brand" href="#">Data</a>
+  handleDropdownOpen(e) {
+    console.log('hi');
+    e.target.parentElement.className += " open";
+    
+  }
 
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav mr-auto">
-                <li className="nav-item active">
-                    <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Link</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link disabled" href="#">Disabled</a>
-                </li>
-                </ul>
-                <form className="form-inline my-2 my-lg-0">
-                <input className="form-control mr-sm-2" type="text" placeholder="Search"/>
-                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+  render() { 
+    const style = {
+      navbar: {
+        borderRadius: '0px',
+        margin: '0px'
+      }
+    };
+
+    return (
+      <nav style={style.navbar} className="navbar navbar-inverse">
+        <div className="container-fluid">
+            <div className="navbar-header">
+            <a className="navbar-brand" href="#">Record</a>
             </div>
-        </nav>
+
+            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+              <ul className="nav navbar-nav">
+                <li className="dropdown">
+                  <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Map Time<span className="caret"></span></a>
+                  <ul className="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li className="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                    <li className="divider"></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+        </div>
+      </nav>
     );
   }
 }

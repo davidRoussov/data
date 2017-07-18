@@ -79,8 +79,7 @@ class ChartView extends Component {
             },
             container: {
                 width: '100%',
-                height: '100%',
-                backgroundColor: '#DAEDC4'
+                height: '100%'
             }
         };
 

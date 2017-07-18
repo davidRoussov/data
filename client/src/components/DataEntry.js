@@ -50,7 +50,6 @@ class DataEntry extends Component {
             container: {
                 width: '100%',
                 padding: '8px',
-                backgroundColor: '#B3CE94',
                 height: '100%'
             }
         }
@@ -68,9 +67,9 @@ class DataEntry extends Component {
                 <h2 style={style.heading}>Mass</h2>
                 <form onSubmit={this.createNewValue.bind(this)} style={style.inputContainer}>
                     <input type="text" className="form-control" value={this.state.newValue} onChange={this.handleInputValue.bind(this)}/>
-                    <button type="submit" className="btn btn-primary" style={style.submitButton}>Submit</button>   
+                    <button type="submit" className="btn btn-success" style={style.submitButton}>Submit</button>   
                 </form>
-                <table style={style.table} className="table table-inverse table-bordered table-hover">
+                <table style={style.table} className="table table-bordered table-hover">
                   <thead>
                     <tr>    
                       <th>Time</th>
