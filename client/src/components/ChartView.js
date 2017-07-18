@@ -3,6 +3,12 @@ import * as d3 from "d3";
 
 class ChartView extends Component {
     componentDidUpdate() {
+        // clear any existing charts first
+        const svg = document.getElementById('chartSVG');
+        while (svg.firstChild) {
+            svg.removeChild(svg.firstChild);
+        }
+
         this.data = JSON.parse(JSON.stringify((this.props && this.props.timeValueData) ? this.props.timeValueData : []));
         this.createLineChart();
     }
@@ -23,9 +29,7 @@ class ChartView extends Component {
             .x(d => x(d.time))
             .y(d => y(d.value));
 
-        
         const svg = d3.select(node)
-            .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
                 .attr("transform", `translate(${margin.left},${margin.top})`)
@@ -69,12 +73,21 @@ class ChartView extends Component {
 
     render() {
 
-        const svgStyle = {
-            padding: "8px"
+        const style = {
+            svg: {
+                padding: "8px"                
+            },
+            container: {
+                width: '100%',
+                height: '100%',
+                backgroundColor: '#DAEDC4'
+            }
         };
 
         return (
-            <svg style={svgStyle} ref={node => this.node = node} width="100%"></svg>
+            <div style={style.container}>
+                <svg id='chartSVG' style={style.svg} ref={node => this.node = node} width="100%"></svg>
+            </div>
         )
     }
 }

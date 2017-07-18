@@ -8,35 +8,41 @@ import ChartView from "../components/ChartView";
 
 class MapTime extends Component {
 
-    componentDidMount() {
-        this.props.loadData("mass");
-    }
+  componentDidMount() {
+    this.props.loadData("mass");
+  }
 
-    render() {
+  render() {
 
-        const dataEntryStyle = {
-            float: "left",
-            width: "20%",
-            padding: "8px"
-        };
-
-        const chartViewStyle = {
-            marginLeft: "20%"
+      const style = {
+        dataEntry: {
+          float: "left",
+          width: "20%",
+          height: '100%'
+        },
+        chartView: {
+          marginLeft: "20%",
+          height: '100%'
+        },
+        container: {
+          height: '100%',
+          width: '100%'
         }
+      }
 
-        const data = (this.props && this.props.mapTime.timeValueData) ? this.props.mapTime.timeValueData : [];
+      const data = (this.props && this.props.mapTime.timeValueData) ? this.props.mapTime.timeValueData : [];
 
-        return (
-            <div>
-                 <div style={dataEntryStyle}>
-                    <DataEntry timeValueData={data}/>
-                </div>
-                <div style={chartViewStyle}>
-                    <ChartView timeValueData={data}/>
-                </div> 
-            </div>
-        )
-    }
+      return (
+        <div style={style.container}>
+          <div style={style.dataEntry}>
+              <DataEntry timeValueData={data}/>
+          </div>
+          <div style={style.chartView}>
+              <ChartView timeValueData={data}/>
+          </div> 
+        </div>
+      )
+  }
 }
 
 const mapStateToProps = state => {

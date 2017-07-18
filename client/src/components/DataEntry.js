@@ -32,20 +32,28 @@ class DataEntry extends Component {
     }
 
     render() {
-
-        const inputContainerStyle = {
-            padding: "10px",
-            width: '200px'
-        };
-
-        const submitButtonStyle = {
-            marginTop: "8px",
-            width: "100%"
+        const style = {
+            inputContainer: {
+                padding: "10px",
+                width: '100%'
+            },
+            submitButton: {
+                marginTop: "8px",
+                width: "100%"
+            },
+            table: {
+                width: '100%'
+            },
+            heading: {
+                textAlign: 'center'
+            },
+            container: {
+                width: '100%',
+                padding: '8px',
+                backgroundColor: '#B3CE94',
+                height: '100%'
+            }
         }
-
-        const tableStyle = {
-            width: '200px'
-        };
 
         const data = this.props.timeValueData;
         const tableOfPast = data.map((row, i) => 
@@ -56,12 +64,13 @@ class DataEntry extends Component {
         );
 
         return (
-            <div>
-                <form onSubmit={this.createNewValue.bind(this)} style={inputContainerStyle}>
+            <div style={style.container}>
+                <h2 style={style.heading}>Mass</h2>
+                <form onSubmit={this.createNewValue.bind(this)} style={style.inputContainer}>
                     <input type="text" className="form-control" value={this.state.newValue} onChange={this.handleInputValue.bind(this)}/>
-                    <button type="submit" className="btn btn-primary" style={submitButtonStyle}>Submit</button>   
+                    <button type="submit" className="btn btn-primary" style={style.submitButton}>Submit</button>   
                 </form>
-                <table style={tableStyle} className="table table-bordered table-hover">
+                <table style={style.table} className="table table-inverse table-bordered table-hover">
                   <thead>
                     <tr>    
                       <th>Time</th>
