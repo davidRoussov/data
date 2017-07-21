@@ -56,7 +56,7 @@ class DataEntry extends Component {
 
         const data = this.props.timeValueData;
         const tableOfPast = data.map((row, i) => 
-          <tr key={i}>
+          <tr key={i} className="warning">
               <td><p>{this.formatTime(row.time)}</p></td>
               <td>{row.value}</td>
           </tr>
@@ -71,7 +71,7 @@ class DataEntry extends Component {
                 </form>
                 <table style={style.table} className="table table-bordered table-hover">
                   <thead>
-                    <tr>    
+                    <tr className="warning">    
                       <th>Time</th>
                       <th>Value</th>
                     </tr>
