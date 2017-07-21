@@ -6,17 +6,23 @@ import { createNewValue } from '../actions/mapTime';
 class DataEntry extends Component {
 
     constructor() {
-        super();
-        this.state = {'newValue': ''};
+      super();
+      this.state = {'newValue': ''};
     }
 
     createNewValue(e) {
-        e.preventDefault();
+      e.preventDefault();
+
+      const userInput = this.state.newValue;
+      if (userInput === "" || isNaN(userInput)) {
+
+      } else {
         const newValueObject = {
             time: new Date(),
             value: this.state.newValue
         };
         this.props.createNewValue('mass', newValueObject);
+      }
     }
 
     handleInputValue(e) {

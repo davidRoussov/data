@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
+import { Navbar, MenuItem, NavDropdown, Nav, NavItem, Modal, Button, FormControl } from 'react-bootstrap';
 
 class MenuBar extends Component {
 
-  handleDropdownOpen(e) {
-    console.log('hi');
-    e.target.parentElement.className += " open";
-    
+  constructor() {
+    super();
+    this.state = {"showModal": false};
   }
+
+  submitNewMapping() {
+    console.log(this.state.newMappingName);
+  }
+
+  handleNewMappingInputChange = (e) => this.setState({ newMappingName: e.target.value });
+
+  openModal = () => this.setState({ showModal: true });
+  closeModal = () => this.setState({ showModal: false });
 
   render() { 
     const style = {
@@ -17,30 +26,46 @@ class MenuBar extends Component {
     };
 
     return (
-      <nav style={style.navbar} className="navbar navbar-inverse">
-        <div className="container-fluid">
-            <div className="navbar-header">
-            <a className="navbar-brand" href="#">Record</a>
-            </div>
+      <div>
+        <Navbar style={style.navbar}>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <a href="#">Record</a>
+            </Navbar.Brand>
+          </Navbar.Header>
+          <Nav>
+            <NavDropdown eventKey={1} title="Map time" id="basic-nav-dropdown">
+              <MenuItem eventKey={1.1}>Action</MenuItem>
+              <MenuItem eventKey={1.2}>Another action</MenuItem>
+              <MenuItem eventKey={1.3}>Something else here</MenuItem>
+              <MenuItem divider />
+              <MenuItem eventKey={1.4} onClick={this.openModal.bind(this)}>Create new mapping</MenuItem>
+            </NavDropdown>
+            <NavItem eventKey={2} href="#">Medical</NavItem>
+          </Nav>
+        </Navbar>
 
-            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-              <ul className="nav navbar-nav">
-                <li className="dropdown">
-                  <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Map Time<span className="caret"></span></a>
-                  <ul className="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li className="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li className="divider"></li>
-                    <li><a href="#">One more separated link</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-        </div>
-      </nav>
+        <Modal show={this.state.showModal}>
+          <Modal.Header>
+            <Modal.Title>Create a new mapping</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <FormControl
+              type="text"
+              value={this.state.newMappingName}
+              placeholder="Enter a name for the new mapping"
+              onChange={this.handleNewMappingInputChange.bind(this)}
+            />
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button onClick={this.closeModal.bind(this)}>Close</Button>
+            <Button bsStyle="primary" onClick={this.submitNewMapping.bind(this)}>Submit</Button>
+          </Modal.Footer>
+
+        </Modal>
+      </div>
     );
   }
 }
