@@ -7,7 +7,7 @@ class MenuBar extends Component {
 
   constructor() {
     super();
-    this.state = {"showModal": false};
+    this.state = {"showModal": false, "newMappingName": ""};
   }
 
   componentDidMount() {
@@ -51,12 +51,13 @@ class MenuBar extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <NavDropdown eventKey={1} title="Map time" id="basic-nav-dropdown">
+            <NavDropdown eventKey={1} title="Map time" id="basic-nav-dropdown" className={this.props.app.mapTimeVisible ? "active" : ""}>
               {listOfMappings}
               <MenuItem divider />
               <MenuItem eventKey={1.4} onClick={this.openModal.bind(this)}>Create new mapping</MenuItem>
             </NavDropdown>
             <NavItem eventKey={2} href="#">Medical</NavItem>
+            <NavItem eventKey={2} href="#">Journal</NavItem>
           </Nav>
         </Navbar>
 

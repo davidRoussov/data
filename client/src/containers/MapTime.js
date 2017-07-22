@@ -32,7 +32,8 @@ class MapTime extends Component {
         },
         container: {
           height: '100%',
-          width: '100%'
+          width: '100%',
+          display: ((this.props.app.mapTimeVisible) ? 'inline' : 'none')
         }
       }
 
