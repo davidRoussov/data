@@ -37,25 +37,22 @@ export function createNewValue(category, newValue) {
 }
 
 export function createNewMapping(newMappingName) {
-  return new Promise((resolve, reject) => {
-    return dispatch => {
-      fetch('/map-time-create-mapping', {
-        method: 'POST',
-        body: JSON.stringify({
-          newMappingName
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(() => {
-        dispatch({
-          type: 'GET_MAP_TIME_TOPICS'
-        });
-        resolve();
+  return dispatch => {
+    fetch('/map-time-create-mapping', {
+      method: 'POST',
+      body: JSON.stringify({
+        newMappingName
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(() => {
+      dispatch({
+        type: 'GET_MAP_TIME_TOPICS'
       });
-    };
-  });
+    });
+  };
 }
 
 export function getMappings() {
