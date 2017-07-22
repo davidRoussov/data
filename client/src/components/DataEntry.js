@@ -21,7 +21,7 @@ class DataEntry extends Component {
             time: new Date(),
             value: this.state.newValue
         };
-        this.props.createNewValue('mass', newValueObject);
+        this.props.createNewValue(this.props.currentMapping, newValueObject);
       }
     }
 
@@ -70,7 +70,7 @@ class DataEntry extends Component {
 
         return (
             <div style={style.container}>
-                <h2 style={style.heading}>Mass</h2>
+                <h2 style={style.heading}>{this.props.currentMapping}</h2>
                 <form onSubmit={this.createNewValue.bind(this)} style={style.inputContainer}>
                     <input type="text" className="form-control" value={this.state.newValue} onChange={this.handleInputValue.bind(this)}/>
                     <button type="submit" className="btn btn-success" style={style.submitButton}>Submit</button>   

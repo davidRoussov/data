@@ -26,5 +26,26 @@ export default (api) => {
       });
   });
 
+  api.post('/map-time-create-mapping', (request, response) => {
+    const newMappingName = request.body.newMappingName;
+    mapTime.createNewMapping(newMappingName)
+      .then(() => response.sendStatus(201))
+      .catch(error => {
+        console.error('Unable to create new mapping');
+        console.error(error);
+        response.sendStatus(500);
+      });
+  });
+
+  api.get('/map-time-mappings', (request, response) => {
+    mapTime.getAllMappings()
+      .then(data => response.send(data))
+      .catch(error => {
+        console.error('Unable to get all mappings');
+        console.error(error);
+        response.sendStatus(500);
+      });
+  });
+
   return api;
 };

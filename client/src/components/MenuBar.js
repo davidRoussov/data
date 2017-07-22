@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, MenuItem, NavDropdown, Nav, NavItem, Modal, Button, FormControl } from 'react-bootstrap';
+import { connect } from "react-redux";
+import { createNewMapping, getMappings, setCurrentMapping } from '../actions/mapTime';
 
 class MenuBar extends Component {
 
@@ -8,14 +10,22 @@ class MenuBar extends Component {
     this.state = {"showModal": false};
   }
 
+  componentDidMount() {
+    this.props.getMappings();
+  }
+
   submitNewMapping() {
-    console.log(this.state.newMappingName);
+    this.props.createNewMapping(this.state.newMappingName);
   }
 
   handleNewMappingInputChange = (e) => this.setState({ newMappingName: e.target.value });
 
   openModal = () => this.setState({ showModal: true });
   closeModal = () => this.setState({ showModal: false });
+
+  chooseMapping(name) {
+    this.props.setCurrentMapping(name);
+  }
 
   render() { 
     const style = {
@@ -24,6 +34,13 @@ class MenuBar extends Component {
         margin: '0px'
       }
     };
+
+    const mappings = (this.props && this.props.mapTime.mappings) ? this.props.mapTime.mappings : [];
+    const listOfMappings = mappings.map((name, i) => 
+      <MenuItem 
+        key={i}
+        onClick={this.chooseMapping.bind(this, name)}
+       >{name}</MenuItem>);
 
     return (
       <div>
@@ -35,9 +52,7 @@ class MenuBar extends Component {
           </Navbar.Header>
           <Nav>
             <NavDropdown eventKey={1} title="Map time" id="basic-nav-dropdown">
-              <MenuItem eventKey={1.1}>Action</MenuItem>
-              <MenuItem eventKey={1.2}>Another action</MenuItem>
-              <MenuItem eventKey={1.3}>Something else here</MenuItem>
+              {listOfMappings}
               <MenuItem divider />
               <MenuItem eventKey={1.4} onClick={this.openModal.bind(this)}>Create new mapping</MenuItem>
             </NavDropdown>
@@ -70,4 +85,14 @@ class MenuBar extends Component {
   }
 }
 
-export default MenuBar;
+const mapStateToProps = state => {
+  return state;
+};
+
+const mapDispatchToProps = {
+  createNewMapping,
+  getMappings,
+  setCurrentMapping
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MenuBar);

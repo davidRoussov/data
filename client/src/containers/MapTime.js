@@ -8,16 +8,22 @@ import ChartView from "../components/ChartView";
 
 class MapTime extends Component {
 
-  componentDidMount() {
-    this.props.getTimeValueData("mass");
+  constructor() {
+    super();
+    this.state = { currentMapping: null };
+  }
+
+  componentDidUpdate() {
+    const propsMapping = this.props.mapTime.currentMapping;
+    if (propsMapping && propsMapping !== this.state.currentMapping) {
+      this.setState({ currentMapping: propsMapping });
+      this.props.getTimeValueData(propsMapping);
+    }
   }
 
   render() {
 
       const style = {
-        topicChoose: {
-
-        },
         dataEntry: {
           height: '100%'
         },
@@ -31,15 +37,15 @@ class MapTime extends Component {
       }
 
       const data = (this.props && this.props.mapTime.timeValueData) ? this.props.mapTime.timeValueData : [];
-
+      
       return (
         <div style={style.container} className="container">
           <div className="row">
             <div style={style.dataEntry} className="col-md-3">
-              <DataEntry timeValueData={data}/>
+              <DataEntry timeValueData={data} currentMapping={this.state.currentMapping}/>
             </div>
             <div style={style.chartView} className="col-md-9">
-              <ChartView timeValueData={data}/>
+              <ChartView timeValueData={data} currentMapping={this.state.currentMapping}/>
             </div> 
           </div>
         </div>
