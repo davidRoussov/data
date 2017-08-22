@@ -103,7 +103,10 @@ class DataEntry extends Component {
                 </tbody>
               </table>
 
-              { this.state.showTopicModal ? <EditMapTimeCategory toggleShow={this.toggleCategoryModal.bind(this)}/> : null }; 
+              { this.state.showTopicModal ? <EditMapTimeCategory 
+                categoryName={this.props.currentMapping}
+                toggleShow={this.toggleCategoryModal.bind(this)}
+                /> : null }; 
             </div>
         )
     } 

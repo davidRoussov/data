@@ -58,6 +58,7 @@ class MenuBar extends Component {
             </NavDropdown>
             <NavItem eventKey={2} href="#">Medical</NavItem>
             <NavItem eventKey={2} href="#">Journal</NavItem>
+            <NavItem eventKey={2} href="#">Periodisation</NavItem>
           </Nav>
         </Navbar>
 
