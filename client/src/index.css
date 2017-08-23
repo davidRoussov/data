@@ -6,3 +6,7 @@ html, body, #root, #root>div {
   height: 100%;
   background-color: #F5F5F5;
 }
+
+.axis {
+  display: none;
+}

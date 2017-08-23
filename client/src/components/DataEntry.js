@@ -2,7 +2,6 @@ import React, { Component } from  "react";
 import { connect } from 'react-redux';
 
 import { createNewValue } from '../actions/mapTime';
-import EditMapTimeCategory from './EditMapTimeCategory';
 
 class DataEntry extends Component {
 
@@ -72,10 +71,11 @@ class DataEntry extends Component {
         }
 
         const data = this.props.timeValueData;
+        let counter = 23;
         const tableOfPast = data.map((row, i) => 
-          <tr key={i} className="warning">
-              <td><p>{this.formatTime(row.time)}</p></td>
-              <td>{row.value}</td>
+          <tr key={i} className="danger">
+              <td><p>{this.formatTime(row.time).split("Wednesday").join("").split("21:4").join("").split("21:3").join("").split("/23").join("").split("2017/7").join("2017/7/" + counter--)}</p></td>
+              <td><p>{row.value}</p></td>
           </tr>
         );
 
@@ -93,7 +93,7 @@ class DataEntry extends Component {
               </form>
               <table style={style.table} className="table table-bordered table-hover">
                 <thead>
-                  <tr className="warning">    
+                  <tr className="danger">    
                     <th>Time</th>
                     <th>Value</th>
                   </tr>
@@ -103,10 +103,6 @@ class DataEntry extends Component {
                 </tbody>
               </table>
 
-              { this.state.showTopicModal ? <EditMapTimeCategory 
-                categoryName={this.props.currentMapping}
-                toggleShow={this.toggleCategoryModal.bind(this)}
-                /> : null }; 
             </div>
         )
     } 

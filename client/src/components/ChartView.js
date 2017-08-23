@@ -48,16 +48,16 @@ class ChartView extends Component {
             .attr("class", "line")
             .attr("d", valueLine)
             .style("fill", "none")
-            .style("stroke", "#000");
+            .style("stroke", "#DC143C");
 
         svg.append("g")
             .attr("transform", `translate(0, ${height})`)
             .call(d3.axisBottom(x));
 
-        svg.append("text")
-            .attr("transform", `translate(${width/2},${height + margin.top + 20})`)
-            .style("text-anchor", "middle")
-            .text("Time");
+        // svg.append("text")
+        //     .attr("transform", `translate(${width/2},${height + margin.top + 20})`)
+        //     .style("text-anchor", "middle")
+        //     .text("Time");
 
         svg.append("g")
             .call(d3.axisLeft(y));
@@ -68,7 +68,10 @@ class ChartView extends Component {
             .attr("x", 0 - (height / 2))
             .attr("dy", "1em")
             .style("text-anchor", "middle")
-            .text("Value")
+            .text("Rating")
+
+        svg.selectAll("axisElement")
+          .classed("large-font", true);
     }
 
     render() {
