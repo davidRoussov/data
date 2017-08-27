@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, MenuItem, NavDropdown, Nav, NavItem, Modal, Button, FormControl } from 'react-bootstrap';
+import { Navbar, MenuItem, NavDropdown, Nav, NavItem, Modal, Button, FormControl, FormGroup } from 'react-bootstrap';
 import { connect } from "react-redux";
 import { createNewMapping, getMappings, setCurrentMapping } from '../actions/mapTime';
 
@@ -15,7 +15,8 @@ class MenuBar extends Component {
   }
 
   submitNewMapping() {
-    this.props.createNewMapping(this.state.newMappingName);
+    this.closeModal();
+    this.props.createNewMapping(this.state.newMappingName)
   }
 
   handleNewMappingInputChange = (e) => this.setState({ newMappingName: e.target.value });
@@ -68,12 +69,14 @@ class MenuBar extends Component {
           </Modal.Header>
 
           <Modal.Body>
-            <FormControl
-              type="text"
-              value={this.state.newMappingName}
-              placeholder="Enter a name for the new mapping"
-              onChange={this.handleNewMappingInputChange.bind(this)}
-            />
+            <FormGroup onSubmit={this.submitNewMapping.bind(this)}>
+              <FormControl
+                type="text"
+                value={this.state.newMappingName}
+                placeholder="Enter a name for the new mapping"
+                onChange={this.handleNewMappingInputChange.bind(this)}
+              />
+            </FormGroup>
           </Modal.Body>
 
           <Modal.Footer>

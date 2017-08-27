@@ -11,6 +11,7 @@ class MapTime extends Component {
   constructor() {
     super();
     this.state = { currentMapping: null };
+    // setInterval(() => console.log("MAPTIME", this.props), 500);
   }
 
   componentDidUpdate() {

@@ -38,6 +38,11 @@ export function createNewValue(category, newValue) {
 
 export function createNewMapping(newMappingName) {
   return dispatch => {
+
+    dispatch({
+      type: 'SHOW_SPINNER'
+    });
+    setTimeout(() => {
     fetch('/map-time-create-mapping', {
       method: 'POST',
       body: JSON.stringify({
@@ -48,10 +53,12 @@ export function createNewMapping(newMappingName) {
       }
     })
     .then(() => {
+      dispatch(getMappings());
       dispatch({
-        type: 'GET_MAP_TIME_TOPICS'
+        type: 'HIDE_SPINNER'
       });
     });
+    }, 1000);
   };
 }
 
