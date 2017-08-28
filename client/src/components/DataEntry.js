@@ -1,7 +1,7 @@
 import React, { Component } from  "react";
 import { connect } from 'react-redux';
 
-import { createNewValue } from '../actions/mapTime';
+import { createNewValue, deleteCategory } from '../actions/mapTime';
 import EditMapTimeCategory from './EditMapTimeCategory';
 
 class DataEntry extends Component {
@@ -48,6 +48,10 @@ class DataEntry extends Component {
       }
     }
 
+    handleDelete() {
+      this.props.deleteCategory(this.props.currentMapping.id);
+    }
+
     render() {
         const style = {
             inputContainer: {
@@ -71,6 +75,8 @@ class DataEntry extends Component {
             }
         }
 
+        const heading = (this.props && this.props.currentMapping && this.props.currentMapping.name) ? this.props.currentMapping.name : '';
+
         const data = this.props.timeValueData;
         const tableOfPast = data.map((row, i) => 
           <tr key={i} className="warning">
@@ -86,7 +92,7 @@ class DataEntry extends Component {
 
         return (
             <div style={style.container}>
-              <h2 style={style.heading} onClick={this.toggleCategoryModal.bind(this)} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>{this.props.currentMapping}</h2>
+              <h2 style={style.heading} onClick={this.toggleCategoryModal.bind(this)} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>{heading}</h2>
               <form onSubmit={this.createNewValue.bind(this)} style={style.inputContainer}>
                   <input type="text" className="form-control" value={this.state.newValue} onChange={this.handleInputValue.bind(this)}/>
                   <button type="submit" className="btn btn-success" style={style.submitButton}>Submit</button>   
@@ -104,7 +110,8 @@ class DataEntry extends Component {
               </table>
 
               { this.state.showTopicModal ? <EditMapTimeCategory 
-                categoryName={this.props.currentMapping}
+                delete={this.handleDelete.bind(this)}
+                categoryName={this.props.currentMapping.name}
                 toggleShow={this.toggleCategoryModal.bind(this)}
                 /> : null }; 
             </div>
@@ -113,10 +120,13 @@ class DataEntry extends Component {
 }
 
 const mapStateToProps = state => {
-  return state
+  return state.mapTime
 };
 
-const mapDispatchToProps = { createNewValue };
+const mapDispatchToProps = { 
+  createNewValue,
+  deleteCategory
+};
 
 export default connect(
     mapStateToProps,

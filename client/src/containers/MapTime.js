@@ -23,35 +23,34 @@ class MapTime extends Component {
   }
 
   render() {
-
-      const style = {
-        dataEntry: {
-          height: '100%'
-        },
-        chartView: {
-          height: '100%'
-        },
-        container: {
-          height: '100%',
-          width: '100%',
-          display: ((this.props.app.mapTimeVisible) ? 'inline' : 'none')
-        }
+    const style = {
+      dataEntry: {
+        height: '100%'
+      },
+      chartView: {
+        height: '100%'
+      },
+      container: {
+        height: '100%',
+        width: '100%',
+        display: ((this.props.app.mapTimeVisible) ? 'inline' : 'none')
       }
+    }
 
-      const data = (this.props && this.props.mapTime.timeValueData) ? this.props.mapTime.timeValueData : [];
-      
-      return (
-        <div style={style.container} className="container">
-          <div className="row">
-            <div style={style.dataEntry} className="col-md-3">
-              <DataEntry timeValueData={data} currentMapping={this.state.currentMapping}/>
-            </div>
-            <div style={style.chartView} className="col-md-9">
-              <ChartView timeValueData={data} currentMapping={this.state.currentMapping}/>
-            </div> 
+    const data = (this.props && this.props.mapTime.timeValueData) ? this.props.mapTime.timeValueData : [];
+    
+    return (
+      <div style={style.container} className="container">
+        <div className="row">
+          <div style={style.dataEntry} className="col-md-3">
+            <DataEntry timeValueData={data} currentMapping={this.state.currentMapping}/>
           </div>
+          <div style={style.chartView} className="col-md-9">
+            <ChartView timeValueData={data} currentMapping={this.state.currentMapping}/>
+          </div> 
         </div>
-      )
+      </div>
+    )
   }
 }
 

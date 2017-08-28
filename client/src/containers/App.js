@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 
 import MenuBar from "./MenuBar";
-import MapTime from "../containers/MapTime";
+import MapTime from "./MapTime";
 
 class App extends Component {
   constructor() {

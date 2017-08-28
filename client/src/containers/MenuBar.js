@@ -24,8 +24,8 @@ class MenuBar extends Component {
   openModal = () => this.setState({ showModal: true });
   closeModal = () => this.setState({ showModal: false });
 
-  chooseMapping(name) {
-    this.props.setCurrentMapping(name);
+  chooseMapping(mapping) {
+    this.props.setCurrentMapping(mapping);
   }
 
   render() { 
@@ -37,11 +37,11 @@ class MenuBar extends Component {
     };
 
     const mappings = (this.props && this.props.mapTime.mappings) ? this.props.mapTime.mappings : [];
-    const listOfMappings = mappings.map((name, i) => 
+    const listOfMappings = mappings.map((mapping, i) => 
       <MenuItem 
         key={i}
-        onClick={this.chooseMapping.bind(this, name)}
-       >{name}</MenuItem>);
+        onClick={this.chooseMapping.bind(this, mapping)}
+       >{mapping.name}</MenuItem>);
 
     return (
       <div>

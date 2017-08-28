@@ -83,3 +83,19 @@ export function setCurrentMapping(mapping) {
     });
   }
 };
+
+export function deleteCategory(categoryID) {
+  return dispatch => {
+    fetch('map-time?category=' + categoryID, {
+      method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(response => {
+      // TODO: add error handling
+
+      dispatch({
+        type: 'MAPPING_DELETED'
+      });
+    });
+  };
+}

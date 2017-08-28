@@ -47,5 +47,15 @@ export default (api) => {
       });
   });
 
+  api.delete('/map-time', (request, response) => {
+    mapTime.deleteMapping(request.query.category)
+      .then(() => response.send(true).sendStatus(200))
+      .catch(error => {
+        console.error('Unable to delete mapping');
+        console.error(error);
+        response.sendStatus(500);
+      });
+  });
+
   return api;
 };

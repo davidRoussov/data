@@ -14,11 +14,19 @@ class EditMapTimeCategory extends Component {
     else this.setState({ isDeleteDisabled: true });
   }
 
+  deleteCategory(e) {
+    e.preventDefault();
+    if(!this.state.isDeleteDisabled) {
+      console.log(JSON.stringify(this.props, null, 2));
+      this.props.delete();
+    }
+  }
+
   render() {
     return (
       <Modal show={true}>
           <Modal.Header>
-            <Modal.Title>Edit category</Modal.Title>
+            <Modal.Title>Edit <strong>{this.props.categoryName}</strong></Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
@@ -32,16 +40,17 @@ class EditMapTimeCategory extends Component {
               </span>
             </div>
             <hr />
-            <div className='input-group'>
+            <form onSubmit={this.deleteCategory.bind(this)} className='input-group'>
               <FormControl
                 type="text"
+                className='form-control'
                 placeholder="Enter the current name of the category to enable deletion"
                 onChange={this.userInputForDelete.bind(this)}
               />
               <span className='input-group-btn'>
-                <Button bsStyle='danger' disabled={this.state.isDeleteDisabled}>Delete</Button>
+                <Button type='submit' bsStyle='danger' disabled={this.state.isDeleteDisabled}>Delete</Button>
               </span>
-            </div>
+            </form>
           </Modal.Body>
 
           <Modal.Footer>
