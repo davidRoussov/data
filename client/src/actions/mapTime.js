@@ -42,7 +42,7 @@ export function createNewMapping(newMappingName) {
     dispatch({
       type: 'SHOW_SPINNER'
     });
-    setTimeout(() => {
+
     fetch('/map-time-create-mapping', {
       method: 'POST',
       body: JSON.stringify({
@@ -58,7 +58,6 @@ export function createNewMapping(newMappingName) {
         type: 'HIDE_SPINNER'
       });
     });
-    }, 1000);
   };
 }
 
@@ -86,6 +85,11 @@ export function setCurrentMapping(mapping) {
 
 export function deleteCategory(categoryID) {
   return dispatch => {
+
+    dispatch({
+      type: 'SHOW_SPINNER'
+    });
+
     fetch('map-time?category=' + categoryID, {
       method: 'DELETE'
     })
@@ -94,7 +98,10 @@ export function deleteCategory(categoryID) {
       // TODO: add error handling
 
       dispatch({
-        type: 'MAPPING_DELETED'
+        type: 'CLEAR_MAP_TIME_DATA'
+      });
+      dispatch({
+        type: 'HIDE_SPINNER'
       });
     });
   };

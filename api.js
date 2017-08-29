@@ -49,7 +49,7 @@ export default (api) => {
 
   api.delete('/map-time', (request, response) => {
     mapTime.deleteMapping(request.query.category)
-      .then(() => response.send(true).sendStatus(200))
+      .then(() => response.send(true))
       .catch(error => {
         console.error('Unable to delete mapping');
         console.error(error);

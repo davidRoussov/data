@@ -6,6 +6,8 @@ const app = (state = {}, action) => {
           return { ...state, pageSpinner: true };
         case 'HIDE_SPINNER':
           return { ...state, pageSpinner: false };
+        case 'CLEAR_MAP_TIME_DATA':
+          return { ...state, mapTimeVisible: false };
         default:
           return state;
     }

@@ -17,7 +17,6 @@ class EditMapTimeCategory extends Component {
   deleteCategory(e) {
     e.preventDefault();
     if(!this.state.isDeleteDisabled) {
-      console.log(JSON.stringify(this.props, null, 2));
       this.props.delete();
     }
   }
