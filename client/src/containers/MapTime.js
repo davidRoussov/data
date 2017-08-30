@@ -10,16 +10,50 @@ class MapTime extends Component {
 
   constructor() {
     super();
-    this.state = { currentMapping: null };
-    // setInterval(() => console.log("MAPTIME", this.props), 500);
-  }
+    this.state = { currentMapping: { id: null } };
+  } 
 
   componentDidUpdate() {
-    const propsMapping = this.props.mapTime.currentMapping;
-    if (propsMapping && propsMapping !== this.state.currentMapping) {
-      this.setState({ currentMapping: propsMapping });
-      this.props.getTimeValueData(propsMapping);
-    }
+    // if(
+    //   this.props &&
+    //   this.props.mapTime &&
+    //   this.props.mapTime.currentMapping &&
+    //   this.props.mapTime.currentMapping.id &&
+    //   this.state.currentMapping &&
+    //   this.state.currentMapping.id &&
+    //   this.props.mapTime.currentMapping.id !== this.state.currentMapping.id ||
+    //   !this.state.currentMapping
+    // ) {
+    //   this.setState({ currentMapping: this.props.mapTime.currentMapping }, () =>
+    //   this.props.getTimeValueData(this.state.currentMapping.id));
+    // }
+
+
+    // try {
+    //   if((!this.state.currentMapping && this.props.mapTime.currentMapping.id) || this.props.mapTime.currentMapping.id !== this.state.currentMapping.id) {
+    //     this.setState({ currentMapping: this.props.mapTime.currentMapping }, () =>
+    //       this.props.getTimeValueData(this.state.currentMapping.id));
+    //   }
+    // } catch(error) {
+
+    // }
+
+    // if(this.props.mapTime && this.props.mapTime.currentMapping && !this.banana) {
+    //   console.log(this.state.currentMapping);
+    //   this.banana = true;
+    //   this.setState({ currentMapping: this.props.currentMapping }, () => {
+    //     debugger;
+    //     var test = 2;
+    //   });
+    // }
+
+    try {
+      const propsMapping = this.props.mapTime.currentMapping.id;
+      if (propsMapping && propsMapping !== this.state.currentMapping.id) {
+        this.setState({ currentMapping: this.props.mapTime.currentMapping });
+        this.props.getTimeValueData(propsMapping);
+      }
+    } catch(err) {}
   }
 
   render() {

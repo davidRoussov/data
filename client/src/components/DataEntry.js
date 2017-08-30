@@ -22,7 +22,7 @@ class DataEntry extends Component {
             time: new Date(),
             value: this.state.newValue
         };
-        this.props.createNewValue(this.props.currentMapping, newValueObject);
+        this.props.createNewValue(this.props.currentMapping.id, newValueObject);
       }
     }
 
@@ -113,7 +113,7 @@ class DataEntry extends Component {
                 delete={this.handleDelete.bind(this)}
                 categoryName={this.props.currentMapping.name}
                 toggleShow={this.toggleCategoryModal.bind(this)}
-                /> : null }; 
+                /> : null } 
             </div>
         )
     } 
